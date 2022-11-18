@@ -1,0 +1,24 @@
+{
+  "name": "erykai/template",
+  "description": "Populate template",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "alexdeovidal",
+      "email": "contato@webav.com.br"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Erykai\\Template\\": "src"
+    }
+  },
+  "require": {
+    "PHP": ">=8.0"
+  },
+  "require-dev": {
+    "alexdeovidal/docker-dev": "v1.1.1"
+  }
+}
+
