@@ -10,10 +10,26 @@ Populate template
 [![Total Downloads](https://img.shields.io/packagist/dt/erykai/template.svg?style=flat-square)](https://packagist.org/packages/erykai/template)
 
 
-define const
+create config.php
 ```php
-define("TEMPLATE_PATH", __DIR__ . "/public/theme");
+$path =  __DIR__ . '/public/theme';
+define('TEMPLATE_PATH', $path);
+const TEMPLATE_URL = 'https://lvh.me';
+const TEMPLATE_CLIENT = 'client';
+const TEMPLATE_DEFAULT = 'default';
+const TEMPLATE_DASHBOARD = 'admin';
+const TEMPLATE_REGEX_GLOBAL = '/{{([A-Z_]+)}}/';
+const TEMPLATE_REGEX_TEXT = '/{{([a-zA-Zà-úÀ-Ú0-9|-|_|?!.,\' ]+)}}/';
+const TEMPLATE_REGEX_ROUTE = '/{{#(\/[a-z-]+[\/|[a-z])+#}}/';
 ```
+create translate.php
+```php
+const TRANSLATE_PATH = 'translate';
+const TRANSLATE_API_KEY = null;
+const TRANSLATE_API_URL = 'https://translate.erykia.com/api/v1';
+const TRANSLATE_DEFAULT = 'pt-BR';
+```
+
 example create path "public/theme/admin/index.html"
 insert in index.html 
 ```html
