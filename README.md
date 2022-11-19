@@ -1,6 +1,14 @@
 # Template
 Populate template
 
+[![Maintainer](http://img.shields.io/badge/maintainer-@alexdeovidal-blue.svg?style=flat-square)](https://instagram.com/alexdeovidal)
+[![Source Code](http://img.shields.io/badge/source-erykai/template-blue.svg?style=flat-square)](https://github.com/erykai/template)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/erykai/template.svg?style=flat-square)](https://packagist.org/packages/erykai/template)
+[![Latest Version](https://img.shields.io/github/release/erykai/template.svg?style=flat-square)](https://github.com/erykai/template/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Quality Score](https://img.shields.io/scrutinizer/g/erykai/template.svg?style=flat-square)](https://scrutinizer-ci.com/g/erykai/template)
+[![Total Downloads](https://img.shields.io/packagist/dt/erykai/template.svg?style=flat-square)](https://packagist.org/packages/erykai/template)
+
 
 define const
 ```php
