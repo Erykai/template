@@ -12,25 +12,31 @@ Populate template
 
 define const
 ```php
-define("TEMPLATE_DIR", __DIR__ . "/public/theme");
+define("TEMPLATE_PATH", __DIR__ . "/public/theme");
 ```
 example create path "public/theme/admin/index.html"
 insert in index.html 
 ```html
-<h1>Hello</h1>
-{{PAGE}}
+<html lang="{{LANG}}">
+<link rel="stylesheet" href="{{TEMPLATE_URL}}/public/theme/{{TEMPLATE_DASHBOARD}}/assets/css/style.css">
+<script src="{{TEMPLATE_URL}}/public/theme/{{TEMPLATE_DASHBOARD}}/assets/script.js"></script>
+<h1>{{Hello World}}</h1>
+<a href="{{TEMPLATE_URL}}{{#/about#}}">{{About}}</a>
+<a href="{{TEMPLATE_URL}}{{#/client/login#}}">{{Login}}</a>\
 ```
 and "public/theme/admin/pages/home.html"
 insert in home.html
 ```html
-<h2>home</h2>
+<h2>{{Home}}</h2>
+<a href="{{TEMPLATE_URL}}{{#/contact#}}">{{Contact}}</a>
 ```
 
 ```php
 require "config.php";
+require "translate.php";
 require "vendor/autoload.php";
-
-$T = new \Erykai\Template\Template("admin");
+use Erykai\Template\Template;
+$T = new Template(TEMPLATE_DASHBOARD);
 
 $T->nav("index","pages/home");
 echo $T->getIndex();

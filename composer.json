@@ -15,10 +15,8 @@
     }
   },
   "require": {
-    "PHP": ">=8.0"
-  },
-  "require-dev": {
-    "alexdeovidal/docker-dev": "v1.1.1"
+    "PHP": ">=8.0",
+    "erykai/translate": "v2.2.1"
   }
 }
 

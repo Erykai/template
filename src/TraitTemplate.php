@@ -2,23 +2,80 @@
 
 namespace Erykai\Template;
 
+use Erykai\Translate\Translate;
+use stdClass;
+
+/**
+ * TraitTemplate
+ */
 trait TraitTemplate
 {
-
-    public function nav(string $index, string $pathFile)
+    /**
+     * navigation
+     */
+    protected function page(): void
     {
-        $this->setPage(file_get_contents(TEMPLATE_DIR . "/{$this->getTheme()}/$pathFile.{$this->getExt()}"));
-        $this->setIndex(file_get_contents(TEMPLATE_DIR . "/{$this->getTheme()}/$index.{$this->getExt()}"));
-        $this->page();
+        preg_match_all(TEMPLATE_REGEX_GLOBAL, $this->getIndex(), $matches);
+        foreach ($matches[0] as $match) {
+            $this->globals($match);
+        }
+    }
+    /**
+     * translate links {{#/dashboard#}}
+     */
+    protected function route(): void
+    {
+        preg_match_all(TEMPLATE_REGEX_ROUTE, $this->getIndex(), $matches);
+        foreach ($matches[0] as $key => $match) {
+            $route = str_replace(['{{#', '#}}'], "", $matches[0][$key]);
+            $data = new stdClass();
+            $data->file = 'route';
+            $data->text = $route;
+            $lang = (new Translate())->data( $data)->target()->response()->translate;
+            $this->setIndex(str_replace($matches[0][$key], $lang, $this->getIndex()));
+        }
+    }
+    /**
+     * @param $fileTranslator
+     * translate text {{Hello world}}
+     */
+    protected function text($fileTranslator): void
+    {
+        preg_match_all(TEMPLATE_REGEX_TEXT, $this->getIndex(), $matches);
+        foreach ($matches[0] as $key => $match) {
+            $data = new stdClass();
+            $data->file = $fileTranslator;
+            $data->text = $matches[1][$key];
+            $lang = (new Translate())->data( $data)->target()->response()->translate;
+            $this->setIndex(str_replace($matches[0][$key], $lang, $this->getIndex()));
+        }
     }
 
-    private function page(): void
+
+    /**
+     * @param string $match
+     */
+    private function globals(string $match): void
     {
-        $regexGlobal = '/{{([A-Z_]+)}}/';
-        preg_match($regexGlobal, $this->getIndex(), $matches);
-        $match = $matches[0];
-        if($match === '{{PAGE}}'){
-            $this->setIndex(str_replace($match, $this->getPage(), $this->getIndex()));
+        switch ($match) {
+            case '{{PAGE}}':
+                $this->setIndex(str_replace($match, $this->getPage(), $this->getIndex()));
+                break;
+            case '{{LANG}}':
+                $this->setIndex(str_replace($match, (new Translate())->lang(), $this->getIndex()));
+                break;
+            case '{{TEMPLATE_URL}}':
+                $this->setIndex(str_replace($match, TEMPLATE_URL, $this->getIndex()));
+                break;
+            case '{{TEMPLATE_CLIENT}}':
+                $this->setIndex(str_replace($match, TEMPLATE_CLIENT, $this->getIndex()));
+                break;
+            case '{{TEMPLATE_DEFAULT}}':
+                $this->setIndex(str_replace($match, TEMPLATE_DEFAULT, $this->getIndex()));
+                break;
+            case '{{TEMPLATE_DASHBOARD}}':
+                $this->setIndex(str_replace($match, TEMPLATE_DASHBOARD, $this->getIndex()));
+                break;
         }
     }
 
