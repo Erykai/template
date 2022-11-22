@@ -6,11 +6,11 @@ class Resource
 {
     use TraitTemplate;
 
-    private string $index;
-    private string $main;
-    private string $page;
-    private string $ext;
-    private string $theme;
+    protected string $index;
+    protected string $main;
+    protected string $page;
+    protected string $ext;
+    protected string $theme;
 
 
     public function __construct(string $theme, string $ext = "html")
@@ -30,7 +30,7 @@ class Resource
     /**
      * @param string $index
      */
-    public function setIndex(string $index): void
+    protected function setIndex(string $index): void
     {
         $this->index = $index;
     }
@@ -38,7 +38,7 @@ class Resource
     /**
      * @return string
      */
-    public function getMain(): string
+    protected function getMain(): string
     {
         return $this->main;
     }
@@ -46,7 +46,7 @@ class Resource
     /**
      * @param string $main
      */
-    public function setMain(string $main): void
+    protected function setMain(string $main): void
     {
         $this->main = $main;
     }
@@ -54,7 +54,7 @@ class Resource
     /**
      * @return string
      */
-    public function getPage(): string
+    protected function getPage(): string
     {
         return $this->page;
     }
@@ -62,7 +62,7 @@ class Resource
     /**
      * @param string $page
      */
-    public function setPage(string $page): void
+    protected function setPage(string $page): void
     {
         $this->page = $page;
     }
@@ -70,7 +70,7 @@ class Resource
     /**
      * @return string
      */
-    public function getExt(): string
+    protected function getExt(): string
     {
         return $this->ext;
     }
@@ -78,7 +78,7 @@ class Resource
     /**
      * @param string $ext
      */
-    public function setExt(string $ext): void
+    protected function setExt(string $ext): void
     {
         $this->ext = $ext;
     }
@@ -86,7 +86,7 @@ class Resource
     /**
      * @return string
      */
-    public function getTheme(): string
+    protected function getTheme(): string
     {
         return $this->theme;
     }
@@ -94,7 +94,7 @@ class Resource
     /**
      * @param string $theme
      */
-    public function setTheme(string $theme): void
+    protected function setTheme(string $theme): void
     {
         $this->theme = $theme;
     }

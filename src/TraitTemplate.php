@@ -11,7 +11,7 @@ use stdClass;
 trait TraitTemplate
 {
     abstract public function getIndex(): string;
-    abstract public function getPage(): string;
+    abstract protected function getPage(): string;
     /**
      * navigation
      */
@@ -33,8 +33,8 @@ trait TraitTemplate
             $data = new stdClass();
             $data->file = 'route';
             $data->text = $route;
-            $lang = (new Translate())->data( $data)->target()->response()->translate;
-            $this->setIndex(str_replace($matches[0][$key], $lang, $this->getIndex()));
+            $text = (new Translate())->data( $data)->target()->response();
+            $this->setIndex(str_replace($matches[0][$key], $text->translate, $this->getIndex()));
         }
     }
     /**
@@ -48,8 +48,8 @@ trait TraitTemplate
             $data = new stdClass();
             $data->file = $fileTranslator;
             $data->text = $matches[1][$key];
-            $lang = (new Translate())->data( $data)->target()->response()->translate;
-            $this->setIndex(str_replace($matches[0][$key], $lang, $this->getIndex()));
+            $text = (new Translate())->data( $data)->target()->response();
+            $this->setIndex(str_replace($matches[0][$key], $text->translate, $this->getIndex()));
         }
     }
 
