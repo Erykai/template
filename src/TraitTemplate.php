@@ -10,6 +10,8 @@ use stdClass;
  */
 trait TraitTemplate
 {
+    abstract public function getIndex(): string;
+    abstract public function getPage(): string;
     /**
      * navigation
      */
