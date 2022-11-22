@@ -2,7 +2,7 @@
 
 namespace Erykai\Template;
 
-class Resource
+abstract class Resource
 {
     use TraitTemplate;
 
@@ -11,6 +11,7 @@ class Resource
     protected string $page;
     protected string $ext;
     protected string $theme;
+    protected string $translate;
 
 
     public function __construct(string $theme, string $ext = "html")
