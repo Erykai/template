@@ -10,13 +10,14 @@ abstract class Resource
     protected string $main;
     protected string $page;
     protected string $ext;
-    protected string $theme;
-    protected string $translate;
+    protected string $themeIndex;
+    protected string $themePage;
 
 
-    public function __construct(string $theme, string $ext = "html")
+    public function __construct(string $themeIndex, string $themePage, string $ext = "html")
     {
-        $this->setTheme($theme);
+        $this->setThemeIndex($themeIndex);
+        $this->setThemePage($themePage);
         $this->setExt($ext);
     }
 
@@ -87,17 +88,30 @@ abstract class Resource
     /**
      * @return string
      */
-    protected function getTheme(): string
+    protected function getThemeIndex(): string
     {
-        return $this->theme;
+        return $this->themeIndex;
     }
 
     /**
      * @param string $theme
      */
-    protected function setTheme(string $theme): void
+    protected function setThemeIndex(string $theme): void
     {
-        $this->theme = $theme;
+        $this->themeIndex = $theme;
+    }
+
+    protected function getThemePage(): string
+    {
+        return $this->themePage;
+    }
+
+    /**
+     * @param string $theme
+     */
+    protected function setThemePage(string $theme): void
+    {
+        $this->themePage = $theme;
     }
 
 
