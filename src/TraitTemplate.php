@@ -21,6 +21,11 @@ trait TraitTemplate
         foreach ($matches[0] as $match) {
             $this->globals($match);
         }
+        preg_match_all(TEMPLATE_REGEX_GLOBAL, $this->getPage(), $page);
+
+        foreach ($page[0] as $match) {
+            $this->globals($match);
+        }
     }
     /**
      * translate links {{#/dashboard#}}
