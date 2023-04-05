@@ -46,14 +46,15 @@ trait TraitTemplate
      * @param $fileTranslator
      * translate text {{Hello world}}
      */
-    protected function text($fileTranslator): void
+    protected function text($fileTranslator, string $module = null): void
     {
         preg_match_all(TEMPLATE_REGEX_TEXT, $this->getIndex(), $matches);
+
         foreach ($matches[0] as $key => $match) {
             $data = new stdClass();
             $data->file = $fileTranslator;
             $data->text = $matches[1][$key];
-            $text = (new Translate())->data( $data)->target()->response();
+            $text = (new Translate())->data($data)->target(null, $module)->response();
             $this->setIndex(str_replace($matches[0][$key], $text->translate, $this->getIndex()));
         }
     }

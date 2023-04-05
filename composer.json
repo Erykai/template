@@ -16,7 +16,7 @@
   },
   "require": {
     "PHP": ">=8.0",
-    "erykai/translate": "v2.2.2"
+    "erykai/translate": "v2.2.3"
   }
 }
 
