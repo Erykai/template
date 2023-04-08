@@ -2,7 +2,6 @@
 
 namespace Erykai\Template;
 
-use Erykai\Translate\Translate;
 use stdClass;
 
 /**
@@ -45,7 +44,7 @@ trait TraitTemplate
             $data = new stdClass();
             $data->file = 'route';
             $data->text = $route;
-            $text = (new Translate())->data( $data)->target()->response();
+            $text = $this->translate->data( $data)->target()->response();
             $this->setIndex(str_replace($matches[0][$key], $text->translate, $this->getIndex()));
         }
     }
@@ -61,7 +60,7 @@ trait TraitTemplate
             $data = new stdClass();
             $data->file = $fileTranslator;
             $data->text = $matches[1][$key];
-            $text = (new Translate())->data($data)->target(null, $module)->response();
+            $text = $this->translate->data($data)->target(null, $module)->response();
             $this->setIndex(str_replace($matches[0][$key], $text->translate, $this->getIndex()));
         }
     }
@@ -80,7 +79,7 @@ trait TraitTemplate
                 $this->setIndex(str_replace($match, $this->getMenu(), $this->getIndex()));
                 break;
             case '{{LANG}}':
-                $this->setIndex(str_replace($match, (new Translate())->lang(), $this->getIndex()));
+                $this->setIndex(str_replace($match, $this->translate->lang(), $this->getIndex()));
                 break;
             case '{{TEMPLATE_URL}}':
                 $this->setIndex(str_replace($match, TEMPLATE_URL, $this->getIndex()));

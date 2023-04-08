@@ -1,13 +1,14 @@
 <?php
 
 namespace Erykai\Template;
-
+use Erykai\Translate\Translate;
 abstract class Resource
 {
     use TraitTemplate;
 
     protected string $index;
     protected string $main;
+    protected string $translate;
     protected string $page;
     protected string $menu;
     protected string $ext;
@@ -17,6 +18,7 @@ abstract class Resource
 
     public function __construct(string $themeIndex, string $themePage, string $ext = "html", $menu = null)
     {
+        $this->translate = new Translate();
         $this->setThemeIndex($themeIndex);
         $this->setThemePage($themePage);
         $this->setMenu($menu);
