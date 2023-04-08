@@ -11,6 +11,7 @@ use stdClass;
 trait TraitTemplate
 {
     abstract public function getIndex(): string;
+    abstract public function getMenu(): string;
     abstract protected function getPage(): string;
     /**
      * navigation
@@ -21,6 +22,12 @@ trait TraitTemplate
         foreach ($matches[0] as $match) {
             $this->globals($match);
         }
+
+        preg_match_all(TEMPLATE_REGEX_GLOBAL, $this->getMenu(), $matches);
+        foreach ($matches[0] as $match) {
+            $this->globals($match);
+        }
+
         preg_match_all(TEMPLATE_REGEX_GLOBAL, $this->getPage(), $page);
 
         foreach ($page[0] as $match) {
@@ -68,6 +75,9 @@ trait TraitTemplate
         switch ($match) {
             case '{{PAGE}}':
                 $this->setIndex(str_replace($match, $this->getPage(), $this->getIndex()));
+                break;
+            case '{{MENU}}':
+                $this->setIndex(str_replace($match, $this->getMenu(), $this->getIndex()));
                 break;
             case '{{LANG}}':
                 $this->setIndex(str_replace($match, (new Translate())->lang(), $this->getIndex()));
