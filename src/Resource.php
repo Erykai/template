@@ -8,7 +8,7 @@ abstract class Resource
 
     protected string $index;
     protected string $main;
-    protected string $translate;
+    protected Translate $translate;
     protected string $page;
     protected string $menu;
     protected string $ext;
