@@ -10,7 +10,7 @@ use stdClass;
 trait TraitTemplate
 {
     abstract public function getIndex(): string;
-    abstract public function getMenu(): string;
+    abstract public function getMenu(): ?string;
     abstract protected function getPage(): string;
     /**
      * navigation

@@ -10,7 +10,7 @@ abstract class Resource
     protected string $main;
     protected Translate $translate;
     protected string $page;
-    protected string $menu;
+    protected ?string $menu;
     protected string $ext;
     protected string $themeIndex;
     protected string $themePage;
@@ -76,7 +76,7 @@ abstract class Resource
     /**
      * @return string
      */
-    protected function getMenu(): string
+    protected function getMenu(): ?string
     {
         return $this->menu;
     }
